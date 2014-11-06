@@ -6,6 +6,8 @@
 // Objective:
 //============================================================================
 
+//FOR EXAMPLE AND ANSWER KEY PURPOSES ONLY!!!!!!!
+
 /** INCLUDE FILES ***************************************************/
 
 #include <iostream>	//	input output commands:	cout & cin
