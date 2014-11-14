@@ -1,8 +1,8 @@
 /** COMMENTS ********************************************************/
-/*	Your name:Alexandra Wolf
-	Class block: 		H		Date: 
+/*	Your name:
+	Class block: 				Date:
 	Lab:
-	Title:Lab 10
+	Title:
 	Objective:
 */
 
@@ -78,46 +78,115 @@ int main()
 int reverse(int num)
 {
 int digits, rebmun;
-	if (num < 10)
+	if (0 < num && num < 10)
 		digits= 1;
-	else if (num > 100 )
+	else if (num<100 && num >= 10  )
 		digits = 2;
-	else if (num < 1000)
+	else if ( num < 1000 && num >=100)
 		digits = 3;
-	else if (num < 10000)
+	else if  (num < 10000 && num >= 1000)
 		digits = 4;
 
-	//make a switch case that will sseperate out the case based on teh number of digits so that you can write each number in reverse
+	cout << "digits =  "<< digits << endl;
+	//make a switch case that will seperate out the case based on the number of digits so that you can write each number in reverse
 switch(digits)
 {
 case 1:
-	rebnum= num;
+	rebmun= num;
 	break;
 case 2:
 	rebmun=  num/10 + ((num %10) *10);
 break;
 case 3:
-	rebumn= num/ //NEED TO F
+	rebmun= num/100 + ((num%10)*100) + ((num%100)-(num%10));
+	break;
+case 4: rebmun = num/1000  + (num%10 * 1000) + (((num%100)-(num%10))*10) + (((num%1000)- ((num%100)-(num%10)))/10) ;
+break;
+
 }
+return rebmun;
 }
+
+
+
 
 bool prime(int num)
 {
 
+	for(int divisor = 2; divisor <= sqrt(num); divisor++)
+	{
+		if (num % divisor == 0)
+		{
+			return false;
+
+		}
+	}
+
+	return true;
 }
+
 
 void exponent()
 {
+	int base, exponent, answer=1;
 
+cout << "\nEnter a positive number between 1 and 999 for the base: ";
+	cin >> base;
+	cout << "Enter a positive number between 1 and 99 for the exponent: ";
+	cin >> exponent;
+
+
+	for(int a = 1; a <= exponent; a++) // middle part declares condition to  it will run not condition to stop teh loop
+	{
+		answer = base*answer;
+	}
+
+	cout <<endl << "The answer of " << base << " raised to the " << exponent << "th power is: " << answer << endl <<endl;
 }
+
+
+
 
 void factorial()
 {
+	int answerD=1, numberD;
 
+cout <<"\nEnter a positive number between 1 and 20: " << endl;
+cin >> numberD;
+
+
+for(int b= 1 ; b <= numberD; b++)
+{
+	answerD= answerD*b;
 }
+cout <<"The number " << numberD << "! is " << answerD << "." << endl<< endl;
+}
+
 
 int greatestCommonDivisor(int a, int b)
 {
+
+int remainder;
+
+	if(a > b) //if second number is the larger number do this code
+	{
+			a = big;
+			b = small;
+			big%small =remainder;
+			small%rmainder = remainder;
+
+
+			//do while or while loop to go while the remainder is not equal to zero
+	}
+
+
+
+	else if (b == a) // if the first number is larger do this code
+
+	else
+
+
+
 
 }
 
