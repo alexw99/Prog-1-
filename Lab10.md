@@ -166,26 +166,50 @@ cout <<"The number " << numberD << "! is " << answerD << "." << endl<< endl;
 int greatestCommonDivisor(int a, int b)
 {
 
-int remainder;
+int remainder, small, big, comdiv;
 
-	if(a > b) //if second number is the larger number do this code
+	if(a > b) //if first number is the larger number do this code
 	{
-			a = big;
-			b = small;
-			big%small =remainder;
-			small%rmainder = remainder;
+
+			 big = a;
+			 small = b;
 
 
-			//do while or while loop to go while the remainder is not equal to zero
+			do
+					{
+						remainder = big % small;
+						big=small;
+						small = remainder;
+					}while (remainder != 0); //do while or while loop to go while the remainder is not equal to zero
+
+comdiv=big;
 	}
 
 
 
-	else if (b == a) // if the first number is larger do this code
+	else if (a == b)          // if the first number is larger do this code
+	{
+		comdiv= a;
+	}
+
 
 	else
+	{
+		small= a;
+		big=b;
 
+		do
+		{
+		remainder= big % small;
+		big= small;
+		small=remainder;
 
+		}while(remainder !=0);
+
+		comdiv= big;  // in the do while loop we have made the last "small" to be called big so we have to say the comdiv=big
+	}
+
+return comdiv;
 
 
 }
