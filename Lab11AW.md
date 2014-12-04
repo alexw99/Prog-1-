@@ -25,7 +25,7 @@ int main()
 	/** VARIABLE DECLARATION ****************************************/
 
 	int gallonsT_rounded, doors, windows,length, width, height ;
-	double gallonR, gallonT=0;
+	double gallonR = 0, gallonT=0;
 	char option;
 
 	/** FUNCTION CALLS***********************************************/
@@ -45,6 +45,7 @@ do
 
 	 	 cout <<"Another room (y/n)? "; // I need to write something that will call th output of on the gallons total neded as a double and what they are rounded
 	 	 cin >> option;
+cout <<endl;
 
 } while (option =='y');
 
@@ -62,7 +63,7 @@ do
 /** FUNCTIONS *******************************************************/
 void getinput(int &length, int &width, int &height, int &doors, int &windows)
 {
-	cout <<endl << "Enter dimensions (length width height): ";
+	cout << "Enter dimensions (length width height): ";
 	cin >> length >> width >> height;
 
 	cout << "Enter number of windows and doors: ";
@@ -75,12 +76,12 @@ void getinput(int &length, int &width, int &height, int &doors, int &windows)
 double process(int length, int width, int height, int doors, int windows) //have double at the front of this because the thing we are returning is a double
 {
 	int SA;
-	double gallonsR;
+	double gallonR;
 
 	  	  SA = ((length*height*2) + (width*height*2)) - ((15*windows) + (21*doors)); //surface area needed - spaces where there are doors and windows
-	  	  gallonsR = SA/400.0;     //use conversion given in lab to estimate that one-gallon of paint covers 400 square feet of surface
+	  	  gallonR = SA/400.0;     //use conversion given in lab to estimate that one-gallon of paint covers 400 square feet of surface
 // make 400 400.0 so that it becomes a double and the computer doesn't have store it as interger or say doubel before hand
-return gallonsR;
+return gallonR;
 
 }
 
