@@ -3,7 +3,7 @@
 	Class block: 	H			Date:
 	Lab:
 	Title: Lab 12
-	Objective:
+	Objective:  //THE PROBLEM IS THAT WE NEED TO IONS THEN ADD AN ANSWER NUMERATOR AND DENOMINATOR VARIABLE
 */
 
 /** INCLUDE FILES ***************************************************/
@@ -20,7 +20,7 @@ void add(int num1, int den1,int num2, int den2);
 void subtract(int num1, int den1,int num2, int den2);
 void multiply(int N, int D, int n, int d);
 void divide(int N1, int D1, int n2, int d2);
-void output(int num1, int den1,int num2, int den2, char sign,int nenumanswer,int reducednumerator,int denanswer, int reduceddenom);
+void output(int num1, int den1,int num2, int den2, char sign,int newnumanswer,int reducednumerator,int denanswer, int reduceddenom);
 //maybe make a reduce fraction function?
 
 /** MAIN FUNCTION ***************************************************/
@@ -36,8 +36,11 @@ do
 {
 	 getinput(num1, den1, num2, den2);
 
-		cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4";
+		cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4\n";
+		cout <<"Which operation?";
 		cin >> option;
+		cout <<endl;
+
 
 	switch (option)
 	{
@@ -47,7 +50,7 @@ do
 		 break;
 	case 2:
 
-		 subtract( num1,  den1, num2,  den2);
+		 subtract(num1,  den1, num2,  den2);
 		 break;
 	case 3:
 
@@ -73,18 +76,25 @@ return 0;
 /** FUNCTIONS *******************************************************/
 void getinput(int &numnerator1,int &denom1,int &num2, int &denom2)  // getting the fraction inputs form the user
 {
+	do
+	{
 	cout <<"Enter the numerator and denominator of the first fraction: ";
 	cin >> numnerator1 >> denom1;
 	cout <<"Enter the numerator and denominator of the second fraction: ";
 	cin >> num2 >> denom2 ;
 
+	if (denom2 == 0 ||denom1 ==0)
+		cout<< "Fractions cannot have a denominator of zero"<< endl;
+	cout << "Please enter valid input" <<endl <<endl;
+
+	}while (denom2 == 0 ||denom1 ==0);
 
 }
 
 void add(int num1, int den1,int num2, int den2) // addition function
 {
 char sign;
-	int LCM, step1, newN1, step2, newN2, numanswer, gcf, reducednumerator, reduceddenom, denanswer,nenumanswer;
+	int LCM = 0, step1 = 0, newN1 = 0, step2 = 0, newN2 = 0, numanswer = 0, gcf = 0, reducednumerator = 0, reduceddenom = 0, denanswer = 0, newnumanswer = 0;
 							// calculate LCM for denominator
 
 	gcf= greatestCommonDivisor( den1, den2);
@@ -109,7 +119,7 @@ char sign;
 		 reduceddenom=denanswer;
 	 }
 	sign = '+';
-	 output( num1,  den1, num2,  den2,  sign, nenumanswer, reducednumerator, denanswer,  reduceddenom);
+	 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
 int greatestCommonDivisor(int den1, int den2) // we need this function to reduce fractions to simplest form
@@ -152,7 +162,7 @@ int greatestCommonDivisor(int den1, int den2) // we need this function to reduce
 void subtract(int num1, int den1,int num2, int den2) //subtraction function
 {
 char sign;
-	int LCM, step1, newN1, step3, newN2, newN3, gcf, reducednumerator, reduceddenom, nenumanswer, denanswer;
+	int LCM = 0, step1 = 0, newN1 = 0, step3 = 0, newN2 = 0, newN3 = 0, gcf = 0, reducednumerator = 0, reduceddenom = 0, newnumanswer = 0, denanswer = 0;
 								// calculate LCM for denominator
 
 		gcf= greatestCommonDivisor( den1, den2);
@@ -172,14 +182,14 @@ char sign;
 	reduceddenom = LCM/gcf;
 		 }
 		 sign= '-';
-		 output( num1,  den1, num2,  den2,  sign, nenumanswer, reducednumerator, denanswer,  reduceddenom);
+		 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
 void multiply(int N, int D, int n, int d)//multiplication function
 {
 	char sign;
-int numerator, denominator, gcf;
-int num1,  den1, num2,  den2,nenumanswer, reducednumerator, denanswer,  reduceddenom; //these are the variables used in the output function
+int numerator = 0, denominator = 0, gcf = 0;
+int num1 = 0,  den1 = 0, num2 = 0,  den2 = 0, newnumanswer = 0, reducednumerator = 0, denanswer = 0, reduceddenom = 0; //these are the variables used in the output function
 
 	numerator = N* n;	// mulitply the top of the fration
 	denominator = D*d;	//mutlitply the bottom of the fraction
@@ -193,14 +203,19 @@ int num1,  den1, num2,  den2,nenumanswer, reducednumerator, denanswer,  reducedd
 
 			 }
 			 sign= '*';
-			 output( num1,  den1, num2,  den2,  sign, nenumanswer, reducednumerator, denanswer,  reduceddenom);
+			 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
 void divide(int N1, int D1, int n2, int d2)// division function
 {
 	char sign;
 	int numerator, denominator, gcf;
-	int  num1,  den1, num2,  den2,nenumanswer, reducednumerator, denanswer,  reduceddenom; // these are the variables called in the output function
+	int  num1 = 0,  den1 = 0, num2 = 0,  den2 = 0, newnumanswer = 0, reducednumerator = 0, denanswer = 0,  reduceddenom = 0; // these are the variables called in the output function
+	if (n2==0)
+	{
+		cout<< "You cannot a zero in the numerator because when you flip the second fraction you will get a numerator in the denominator!"<<endl <<endl;
+		return; // returnign to main function to get valid input by running input and menu again
+	}
 	n2=d2;// flip second fraction
 	d2=n2;
 
@@ -216,20 +231,20 @@ void divide(int N1, int D1, int n2, int d2)// division function
 
 				 }
 				 sign='/';
-				  output( num1,  den1, num2,  den2,  sign, nenumanswer, reducednumerator, denanswer,  reduceddenom);
+				  output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
-void output(int num1, int den1,int num2, int den2, char sign,int nenumanswer,int reducednumerator,int denanswer, int reduceddenom)
+void output(int num1, int den1,int num2, int den2, char sign,int newnumanswer,int reducednumerator,int denanswer, int reduceddenom)
 {
 
 
-	cout <<" " << num1<< "         " << num2 << "         " << nenumanswer << "         " << reducednumerator;
+	cout <<" " << num1<< "         " << num2 << "         " << newnumanswer << "         " << reducednumerator << endl;
 
 	//need to make this work for add subtract or multiply or divide so create a chaar variable with those symbols
 
-		cout << "---  " << sign << "  ---  =  ---  =  ---";
+		cout << "---  " << sign << "  ---  =  ---  =  ---" << endl;
 
 
-		cout << " " <<den1 << "         " << den2 << "         " << denanswer << "         "<< reduceddenom;
+		cout << " " <<den1 << "         " << den2 << "         " << denanswer << "         "<< reduceddenom << endl;
 
 }
