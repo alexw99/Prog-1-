@@ -14,13 +14,13 @@
 using namespace std;
 
 /** FUNCTION PROTOTYPES**********************************************/
-void getinput(int &numnerator1,int &denom1,int &num2, int &denom2);
+void getinput(int &num1,int &den1,int &num2, int &den2);
 int greatestCommonDivisor(int den1, int den2);
-void add(int num1, int den1,int num2, int den2);
-void subtract(int num1, int den1,int num2, int den2);
-void multiply(int N, int D, int n, int d);
-void divide(int N1, int D1, int n2, int d2);
-void output(int num1, int den1,int num2, int den2, char sign,int newnumanswer,int reducednumerator,int denanswer, int reduceddenom);
+void add(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &newnumanswer);
+void subtract(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &newnumanswer);
+void multiply(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer);
+void divide(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer);
+void output(int &num1, int &den1,int &num2, int &den2, char sign,int &newnumanswer,int &reducednumerator,int &denanswer, int &reduceddenom);
 //maybe make a reduce fraction function?
 
 /** MAIN FUNCTION ***************************************************/
@@ -28,7 +28,7 @@ int main()
 {
 	/** VARIABLE DECLARATION ****************************************/
 char option2;
-int num1, den1, num2, den2, option;
+int num1, den1, num2, den2, option, denanswer, newnumanswer;
 
 
 	/** FUNCTION CALLS***********************************************/
@@ -46,19 +46,18 @@ do
 	{
 	case 1:
 
-		 add(num1, den1, num2, den2);
+		 add(num1, den1, num2, den2, denanswer, newnumanswer);
 		 break;
 	case 2:
-
-		 subtract(num1,  den1, num2,  den2);
+		 subtract(num1, den1,num2, den2,denanswer,newnumanswer);
 		 break;
 	case 3:
 
-		 multiply(num1, den1, num2, den2);
+		 multiply(num1, den1, num2, den2, denanswer, newnumanswer);
 		 break;
 	case 4:
 
-		 divide(num1, den1, num2, den2);
+		 divide(num1, den1, num2, den2, denanswer, newnumanswer);
 		 break;
 	}
 		cout << "Another problem (y for yes, n for no)? ";
@@ -74,48 +73,51 @@ return 0;
 
 
 /** FUNCTIONS *******************************************************/
-void getinput(int &numnerator1,int &denom1,int &num2, int &denom2)  // getting the fraction inputs form the user
+void getinput(int &num1,int &den1,int &num2, int &den2)  // getting the fraction inputs form the user
 {
 	do
 	{
 	cout <<"Enter the numerator and denominator of the first fraction: ";
-	cin >> numnerator1 >> denom1;
+	cin >> num1 >> den1;
 	cout <<"Enter the numerator and denominator of the second fraction: ";
-	cin >> num2 >> denom2 ;
+	cin >> num2 >> den2 ;
 
-	if (denom2 == 0 ||denom1 ==0)
+	if (den2 == 0 ||den1 ==0)
+	{
 		cout<< "Fractions cannot have a denominator of zero"<< endl;
-	cout << "Please enter valid input" <<endl <<endl;
+		cout << "Please enter valid input" <<endl <<endl;
+	}
 
-	}while (denom2 == 0 ||denom1 ==0);
+	}while (den2 == 0 ||den1 ==0);
 
 }
 
-void add(int num1, int den1,int num2, int den2) // addition function
+void add(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &newnumanswer) // addition function
 {
 char sign;
-	int LCM = 0, step1 = 0, newN1 = 0, step2 = 0, newN2 = 0, numanswer = 0, gcf = 0, reducednumerator = 0, reduceddenom = 0, denanswer = 0, newnumanswer = 0;
+	int step1 = 0, newN1 = 0, step2 = 0, newN2 = 0,  gcf = 0, reducednumerator = 0, reduceddenom = 0;
 							// calculate LCM for denominator
 
 	gcf= greatestCommonDivisor( den1, den2);
-	LCM = (den1*den2) / gcf; //calculate the LCM multiply the denominators by each other and divide by the GCD
-	step1 = LCM/den2;
+	denanswer = (den1*den2) / gcf; //calculate the LCM multiply the denominators by each other and divide by the GCD
+	step1 = denanswer/den2;
 	newN1= step1*num1; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
-	step2= LCM/den1;
+	step2= denanswer/den1;
 	newN2= step2*num2; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
-	numanswer= newN1+newN2;
+	newnumanswer= newN1+newN2;
+
 
 					//simplify fraction
-	gcf= greatestCommonDivisor( numanswer, LCM); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
+	gcf= greatestCommonDivisor( newnumanswer, denanswer); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
 	if ( gcf > 1)  //put in  simplest form so see is numerator goes into denominator (LCM)
 	 {
-		reducednumerator =numanswer/gcf;
-		reduceddenom = LCM/gcf;
+		reducednumerator =newnumanswer/gcf;
+		reduceddenom = denanswer/gcf;
 	 }
 
 	 else
 	 {
-		 reducednumerator=numanswer;
+		 reducednumerator=newnumanswer;
 		 reduceddenom=denanswer;
 	 }
 	sign = '+';
@@ -159,10 +161,10 @@ int greatestCommonDivisor(int den1, int den2) // we need this function to reduce
 		return comdiv;
 	}
 
-void subtract(int num1, int den1,int num2, int den2) //subtraction function
+void subtract(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &newnumanswer) //subtraction function
 {
 char sign;
-	int LCM = 0, step1 = 0, newN1 = 0, step3 = 0, newN2 = 0, newN3 = 0, gcf = 0, reducednumerator = 0, reduceddenom = 0, newnumanswer = 0, denanswer = 0;
+	int LCM = 0, step1 = 0, newN1 = 0, step3 = 0, newN2 = 0, gcf = 0, reducednumerator = 0, reduceddenom = 0;
 								// calculate LCM for denominator
 
 		gcf= greatestCommonDivisor( den1, den2);
@@ -171,70 +173,69 @@ char sign;
 		newN1= step1*num1; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
 		step3= LCM/den2;
 		newN2= step3*num2; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
-		newN3= newN1-newN2;
-
+		newnumanswer= newN1-newN2;
+LCM= denanswer;
 						//simplify fraction
-		gcf= greatestCommonDivisor( newN3, LCM); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
+		gcf= greatestCommonDivisor( newnumanswer, denanswer); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
 		 if ( gcf > 1)  //put in  simplest form so see is numerator goes into denominator (LCM)
 		 {
 
-	reducednumerator =newN3/gcf;
-	reduceddenom = LCM/gcf;
+	reducednumerator =newnumanswer/gcf;
+	reduceddenom = denanswer/gcf;
 		 }
 		 sign= '-';
 		 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
-void multiply(int N, int D, int n, int d)//multiplication function
+void multiply(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer)//multiplication function
 {
 	char sign;
-int numerator = 0, denominator = 0, gcf = 0;
-int num1 = 0,  den1 = 0, num2 = 0,  den2 = 0, newnumanswer = 0, reducednumerator = 0, denanswer = 0, reduceddenom = 0; //these are the variables used in the output function
+	int  gcf = 0;
+	int reducednumerator = 0, reduceddenom = 0; //these are the variables used in the output function
 
-	numerator = N* n;	// mulitply the top of the fration
-	denominator = D*d;	//mutlitply the bottom of the fraction
+	newnumanswer = num1* num2;	// mulitply the top of the fration
+	denanswer = den1*den2;	//mutlitply the bottom of the fraction
 
-	gcf= greatestCommonDivisor(numerator ,denominator ); // reduce fraction
-			 if ( numerator > 1)  //put in  simplest form so see is numerator goes into denominator
+	gcf= greatestCommonDivisor(newnumanswer ,denanswer ); // reduce fraction
+			 if ( newnumanswer > 1)  //put in  simplest form so see is numerator goes into denominator
 			 {
 
-		reducednumerator =numerator/denominator;
-		reduceddenom = denominator/numerator;
+		reducednumerator =newnumanswer/denanswer;
+		reduceddenom = denanswer/newnumanswer;
 
 			 }
 			 sign= '*';
 			 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
-void divide(int N1, int D1, int n2, int d2)// division function
+void divide(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer)// division function
 {
 	char sign;
-	int numerator, denominator, gcf;
-	int  num1 = 0,  den1 = 0, num2 = 0,  den2 = 0, newnumanswer = 0, reducednumerator = 0, denanswer = 0,  reduceddenom = 0; // these are the variables called in the output function
-	if (n2==0)
+	int  reducednumerator = 0,  reduceddenom = 0, gcf; // these are the variables called in the output function
+	if (num2==0)
 	{
-		cout<< "You cannot a zero in the numerator because when you flip the second fraction you will get a numerator in the denominator!"<<endl <<endl;
-		return; // returnign to main function to get valid input by running input and menu again
+		cout<< "You cannot a zero in the numerator because when you flip the second fraction you will get a numerator in the denanswer!"<<endl <<endl;
+		return; // returning to main function to get valid input by running input and menu again
 	}
-	n2=d2;// flip second fraction
-	d2=n2;
+	num2=den2;// flip second fraction
+	den2=num2;
 
-	numerator = N1*d2;// multiply top
-	denominator = D1*n2;// multiply bottom
+	newnumanswer = num1*den2;// multiply top
+	denanswer = den1*num2;// multiply bottom
 
-	gcf= greatestCommonDivisor(numerator ,denominator ); // reduce fraction
-				 if ( numerator > 1)  //put in  simplest form so see is numerator goes into denominator
+	gcf= greatestCommonDivisor(newnumanswer ,denanswer ); // reduce fraction
+				 if ( newnumanswer > 1)  //put in  simplest form so see is numerator goes into denanswer
 				 {
 
-			reducednumerator =numerator/denominator;
-			reduceddenom = denominator/numerator;
+			reducednumerator =newnumanswer/denanswer;
+			reduceddenom = denanswer/newnumanswer;
 
 				 }
 				 sign='/';
 				  output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
-void output(int num1, int den1,int num2, int den2, char sign,int newnumanswer,int reducednumerator,int denanswer, int reduceddenom)
+void output(int &num1, int &den1,int &num2, int &den2, char sign,int &newnumanswer,int &reducednumerator,int &denanswer, int &reduceddenom)
 {
 
 
