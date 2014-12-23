@@ -37,7 +37,7 @@ do
 	 getinput(num1, den1, num2, den2);
 
 		cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4\n";
-		cout <<"Which operation?";
+		cout <<"Which operation? ";
 		cin >> option;
 		cout <<endl;
 
@@ -49,7 +49,7 @@ do
 		 add(num1, den1, num2, den2, denanswer, newnumanswer);
 		 break;
 	case 2:
-		 subtract(num1, den1,num2, den2,denanswer,newnumanswer);
+		 subtract( num1,  den1, num2,  den2,  denanswer, newnumanswer);
 		 break;
 	case 3:
 
@@ -81,6 +81,7 @@ void getinput(int &num1,int &den1,int &num2, int &den2)  // getting the fraction
 	cin >> num1 >> den1;
 	cout <<"Enter the numerator and denominator of the second fraction: ";
 	cin >> num2 >> den2 ;
+	cout <<endl;
 
 	if (den2 == 0 ||den1 ==0)
 	{
@@ -100,15 +101,18 @@ char sign;
 
 	gcf= greatestCommonDivisor( den1, den2);
 	denanswer = (den1*den2) / gcf; //calculate the LCM multiply the denominators by each other and divide by the GCD
-	step1 = denanswer/den2;
+
+	step1 = den2/gcf;
 	newN1= step1*num1; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
-	step2= denanswer/den1;
+	step2= den1/gcf;
 	newN2= step2*num2; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
 	newnumanswer= newN1+newN2;
 
 
 					//simplify fraction
 	gcf= greatestCommonDivisor( newnumanswer, denanswer); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
+
+
 	if ( gcf > 1)  //put in  simplest form so see is numerator goes into denominator (LCM)
 	 {
 		reducednumerator =newnumanswer/gcf;
@@ -161,30 +165,39 @@ int greatestCommonDivisor(int den1, int den2) // we need this function to reduce
 		return comdiv;
 	}
 
-void subtract(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &newnumanswer) //subtraction function
+void subtract(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &newnumanswer) // addition function
 {
 char sign;
-	int LCM = 0, step1 = 0, newN1 = 0, step3 = 0, newN2 = 0, gcf = 0, reducednumerator = 0, reduceddenom = 0;
-								// calculate LCM for denominator
+	int step1 = 0, newN1 = 0, step2 = 0, newN2 = 0,  gcf = 0, reducednumerator = 0, reduceddenom = 0;
+							// calculate LCM for denominator
 
-		gcf= greatestCommonDivisor( den1, den2);
-			LCM = (den1*den2) / gcf; //calculate the LCM multiply the denominators by each other and divide by the GCD
-		step1 = LCM/den1;
-		newN1= step1*num1; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
-		step3= LCM/den2;
-		newN2= step3*num2; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
-		newnumanswer= newN1-newN2;
-LCM= denanswer;
-						//simplify fraction
-		gcf= greatestCommonDivisor( newnumanswer, denanswer); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
-		 if ( gcf > 1)  //put in  simplest form so see is numerator goes into denominator (LCM)
-		 {
+	gcf= greatestCommonDivisor( den1, den2);
+	denanswer = (den1*den2) / gcf; //calculate the LCM multiply the denominators by each other and divide by the GCD
 
-	reducednumerator =newnumanswer/gcf;
-	reduceddenom = denanswer/gcf;
-		 }
-		 sign= '-';
-		 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
+	step1 = den2/gcf;
+	newN1= step1*num1; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
+	step2= den1/gcf;
+	newN2= step2*num2; //multiplying numerator by same thing as denominator was multiplied by so fraction maintains its value
+	newnumanswer= newN1-newN2;
+
+
+					//simplify fraction
+	gcf= greatestCommonDivisor( newnumanswer, denanswer); //need the GCM of the LCM and newN3 in order to see if we can simplify the fraction
+
+
+	if ( gcf > 1)  //put in  simplest form so see is numerator goes into denominator (LCM)
+	 {
+		reducednumerator =newnumanswer/gcf;
+		reduceddenom = denanswer/gcf;
+	 }
+
+	 else
+	 {
+		 reducednumerator=newnumanswer;
+		 reduceddenom=denanswer;
+	 }
+	sign = '-';
+	 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
 void multiply(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer)//multiplication function
@@ -197,12 +210,16 @@ void multiply(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &ne
 	denanswer = den1*den2;	//mutlitply the bottom of the fraction
 
 	gcf= greatestCommonDivisor(newnumanswer ,denanswer ); // reduce fraction
-			 if ( newnumanswer > 1)  //put in  simplest form so see is numerator goes into denominator
+			 if ( gcf > 1)  //put in  simplest form so see is numerator goes into denominator
 			 {
 
-		reducednumerator =newnumanswer/denanswer;
-		reduceddenom = denanswer/newnumanswer;
+		reducednumerator =newnumanswer/gcf;
+		reduceddenom = denanswer/gcf;
 
+			 }
+			 else{
+				 reducednumerator =newnumanswer;
+				 reduceddenom = denanswer;
 			 }
 			 sign= '*';
 			 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
@@ -239,13 +256,13 @@ void output(int &num1, int &den1,int &num2, int &den2, char sign,int &newnumansw
 {
 
 
-	cout <<" " << num1<< "         " << num2 << "         " << newnumanswer << "         " << reducednumerator << endl;
+	cout <<" " << num1<< "        " << num2 << "       " << newnumanswer << "           " << reducednumerator << endl;
 
-	//need to make this work for add subtract or multiply or divide so create a chaar variable with those symbols
+	//need to make this work for add subtract or multiply or divide so create a char variable with those symbols
 
-		cout << "---  " << sign << "  ---  =  ---  =  ---" << endl;
+		cout << "---  " << sign << "  ---  =  ---  =  ---  =  ---" << endl;
 
 
-		cout << " " <<den1 << "         " << den2 << "         " << denanswer << "         "<< reduceddenom << endl;
+		cout << " " <<den1 << "        " << den2 << "         " << denanswer << "          "<< reduceddenom << endl;
 
 }
