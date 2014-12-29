@@ -228,27 +228,30 @@ void multiply(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &ne
 void divide(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer)// division function
 {
 	char sign;
-	int  reducednumerator = 0,  reduceddenom = 0, gcf; // these are the variables called in the output function
+	int  reducednumerator = 0,  reduceddenom = 0, gcf, denominator = 0, comdiv= 0; // add comdiv?
 	if (num2==0)
 	{
-		cout<< "You cannot a zero in the numerator because when you flip the second fraction you will get a numerator in the denanswer!"<<endl <<endl;
+		cout<< "You cannot have a zero in the numerator because when you flip the second fraction you will get a numerator in the denanswer!"<<endl <<endl;
 		return; // returning to main function to get valid input by running input and menu again
 	}
-	num2=den2;// flip second fraction
-	den2=num2;
+
+	denominator=num2;// flip second fraction
+	num2=den2;
+
 
 	newnumanswer = num1*den2;// multiply top
-	denanswer = den1*num2;// multiply bottom
+	denanswer = den1*denominator;// multiply bottom
 
-	gcf= greatestCommonDivisor(newnumanswer ,denanswer ); // reduce fraction
+	gcf= greatestCommonDivisor(newnumanswer , denanswer ); // reduce fraction
 				 if ( newnumanswer > 1)  //put in  simplest form so see is numerator goes into denanswer
 				 {
 
-			reducednumerator =newnumanswer/denanswer;
-			reduceddenom = denanswer/newnumanswer;
+			reducednumerator =newnumanswer/comdiv; //comdiv? ?
+			reduceddenom = denanswer/newnumanswer; //comdiv?
 
 				 }
 				 sign='/';
+				 denominator=num2; //this part is for the output of the original fractions
 				  output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
 
