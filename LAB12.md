@@ -246,7 +246,7 @@ void divide(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newn
 				 if ( newnumanswer > 1)  //put in  simplest form so see is numerator goes into denanswer
 				 {
 
-			reducednumerator =newnumanswer/comdiv; //comdiv? ?
+			reducednumerator =newnumanswer/denanswer; //comdiv? ?
 			reduceddenom = denanswer/newnumanswer; //comdiv?
 
 				 }
