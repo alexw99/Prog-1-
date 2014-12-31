@@ -21,7 +21,7 @@ void subtract(int &num1, int &den1,int &num2, int &den2, int &denanswer,int &new
 void multiply(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer);
 void divide(int &num1, int &den1, int &num2, int &den2, int &denanswer,int &newnumanswer);
 void output(int &num1, int &den1,int &num2, int &den2, char sign,int &newnumanswer,int &reducednumerator,int &denanswer, int &reduceddenom);
-void reduceFraction(int &newnumanswer, int &denanswer );
+void reduceFraction(int &reducednumerator, int &reduceddenom);
 
 /** MAIN FUNCTION ***************************************************/
 int main()
@@ -109,7 +109,7 @@ char sign;
 
 
 					//simplify fraction
-	reduceFraction(newnumanswer, denanswer );
+	 reduceFraction(reducednumerator,  reduceddenom);
 	sign = '+';
 	 output( num1,  den1, num2,  den2,  sign, newnumanswer, reducednumerator, denanswer,  reduceddenom);
 }
