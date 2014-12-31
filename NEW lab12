@@ -1,0 +1,87 @@
+/** COMMENTS ********************************************************/
+/*	Your name: ALexandra WOlf
+	Class block: 			H	Date:
+	Lab:
+	Title: lab 12
+	Objective:
+*/
+
+/** INCLUDE FILES ***************************************************/
+
+#include <iostream>	//	input output commands:	cout & cin
+using namespace std;
+
+/** FUNCTION PROTOTYPES**********************************************/
+int getinput (int &numerator1, int &denominator1, int &numerator2 , int &denominator2);
+void Greatestcommondivisor();
+void LCM();
+void add();
+void subtract();
+void multiply ();
+void divide ();
+void output();
+void reducefraction();
+
+/** MAIN FUNCTION ***************************************************/
+int main()
+{
+	/** VARIABLE DECLARATION ****************************************/
+
+	/** FUNCTION CALLS***********************************************/
+	do
+	{
+		getinput  (numerator1, denominator1, numerator2 ,denominator2);
+
+			cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4\n";
+			cout <<"Which operation? ";
+			cin >> option;
+			cout <<endl;
+
+
+		switch (option)
+		{
+		case 1:
+
+			 add();
+			 break;
+		case 2:
+			 subtract( );
+			 break;
+		case 3:
+
+			 multiply();
+			 break;
+		case 4:
+
+			 divide();
+			 break;
+		}
+			cout << "Another problem (y for yes, n for no)? ";
+			cin >> option2;
+
+	} while (option2 == 'y');
+
+	return 0;
+	}
+
+
+
+/** FUNCTIONS *******************************************************/
+int getinput (int &numerator1, int &denominator1, int &numerator2 , int &denominator2)
+{
+	do
+		{
+		cout <<"Enter the numerator and denominator of the first fraction: ";
+		cin >> numerator1 >> denominator1;
+		cout <<"Enter the numerator and denominator of the second fraction: ";
+		cin >> numerator2 >> denominator2 ;
+		cout <<endl;
+
+		if (denominator2 == 0 ||denominator1 ==0)
+		{
+			cout<< "Fractions cannot have a denominator of zero"<< endl;
+			cout << "Please enter valid input" <<endl <<endl;
+		}
+
+		}while (den2 == 0 ||den1 ==0);
+}
