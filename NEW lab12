@@ -30,6 +30,8 @@ int main()
 	/** FUNCTION CALLS***********************************************/
 	do
 	{
+		int option;
+
 		getinput  (numerator1, denominator1, numerator2 ,denominator2);
 
 			cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4\n";
