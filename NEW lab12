@@ -31,6 +31,7 @@ int main()
 	do
 	{
 		int option;
+char anotherproblem;
 
 		getinput  (numerator1, denominator1, numerator2 ,denominator2);
 
@@ -59,9 +60,9 @@ int main()
 			 break;
 		}
 			cout << "Another problem (y for yes, n for no)? ";
-			cin >> option2;
+			cin >> anotherproblem;
 
-	} while (option2 == 'y');
+	} while (anotherproblem == 'y');
 
 	return 0;
 	}
