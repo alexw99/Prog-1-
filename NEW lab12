@@ -14,11 +14,11 @@ using namespace std;
 /** FUNCTION PROTOTYPES**********************************************/
 int getinput (int &numerator1, int &denominator1, int &numerator2 , int &denominator2);
 void Greatestcommondivisor();
-void LCM();
-void add();
-void subtract();
-void multiply ();
-void divide ();
+void  LCM(int &denominator1, int &denominator2,int &LCM);
+void add(int &numerator1, int &denominator1, int &numerator2 , int &denominator2,  int &numanswer, int &denanswer);// ideas for variables 2 answer ones a gcf? and lcm?
+void subtract(int &numerator1, int &denominator1, int &numerator2 , int &denominator2,  int &numanswer, int &denanswer);
+void multiply (int &numerator1, int &denominator1, int &numerator2 , int &denominator2);
+void divide (int &numerator1, int &denominator1, int &numerator2 , int &denominator2);
 void output();
 void reducefraction();
 
@@ -31,9 +31,9 @@ int main()
 	do
 	{
 		int option;
-char anotherproblem;
+		char anotherproblem;
 
-		getinput  (numerator1, denominator1, numerator2 ,denominator2);
+ getinput (numerator1, denominator1, numerator2 , denominator2);
 
 			cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4\n";
 			cout <<"Which operation? ";
@@ -45,10 +45,10 @@ char anotherproblem;
 		{
 		case 1:
 
-			 add();
+			 add(numerator1, denominator1, numerator2 , denominator2, numanswer, denanswer);
 			 break;
 		case 2:
-			 subtract( );
+			 subtract(numerator1, denominator1, numerator2 , denominator2, numanswer, denanswer);
 			 break;
 		case 3:
 
@@ -86,5 +86,71 @@ int getinput (int &numerator1, int &denominator1, int &numerator2 , int &denomin
 			cout << "Please enter valid input" <<endl <<endl;
 		}
 
-		}while (den2 == 0 ||den1 ==0);
+		}while (denominator2 == 0 ||denominator1 ==0);
+}
+int greatestCommonDivisor(int &denominator1, int &denominator2) // we need this function to reduce fractions to simplest form
+	{
+
+	int remainder, small, big;
+
+		if(denominator1 > denominator2) //if first number is the larger number do this code
+		{
+
+				 big = denominator1;
+				 small = denominator2;
+
+		}
+
+
+
+		else if (denominator1 == denominator2)          //if numbers are the same the common divisor is the same  number
+		{
+			return denominator1;
+		}
+
+
+		else //do this code if the second number is the larger number
+		{
+			small= denominator1;
+			big=denominator2;
+		}
+
+		do
+		{
+				remainder = big % small;
+				big=small;
+				small = remainder;
+		}while (remainder != 0); //do while or while loop to go while the remainder is not equal to zero
+
+		return big;
+	}
+void  LCM(int &denominator1, int &denominator2,int &LCM)
+{
+	int gcf=0;
+
+	gcf = greatestCommonDivisor( denominator1,  denominator2);
+	LCM= (denominator1 *denominator2)/ gcf;
+
+}
+
+void add(int &numerator1, int &denominator1, int &numerator2 , int &denominator2,  int &numanswer, int &denanswer)
+{
+	char sign;
+	LCM= LCM(denominator1, denominator2,LCM);// calculate LCM or in this case the lowest common denominator for both
+	denanswer= LCM;
+	numanswer= ((LCM /denominator1)*numerator1) + ((LCM/ denominator2)*numerator2);   //divide LCM by original denominators and multiply by original numerators
+	sign = '+';
+//call reduce fraction
+//maybe call reduce fraction function and output function in the main function
+}
+
+void subtract(int &numerator1, int &denominator1, int &numerator2 , int &denominator2,  int &numanswer, int &denanswer)
+{
+	char sign;
+	LCM= LCM(denominator1, denominator2,LCM);// calculate LCM or in this case the lowest common denominator for both
+	denanswer= LCM;
+	numanswer= ((LCM /denominator1)*numerator1) - ((LCM/ denominator2)*numerator2);   //divide LCM by original denominators and multiply by original numerators
+	sign='-';
+//call reduce fraction
+//maybe call reduce fraction function and output function in the main function
 }
