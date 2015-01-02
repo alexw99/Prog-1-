@@ -1,0 +1,73 @@
+/** COMMENTS ********************************************************/
+/*	Your name:ALexandra WOlf
+	Class block: 	H			Date:
+	Lab: 13
+	Title:
+	Objective:
+*/
+
+/** INCLUDE FILES ***************************************************/
+
+#include <iostream>	//	input output commands:	cout & cin
+using namespace std;
+
+/** FUNCTION PROTOTYPES**********************************************/
+void getinput(int &N);
+void pointup(int &N);
+void pointdown(int &N);
+void equalateral(int &N);
+void squareX(int &N);
+
+/** MAIN FUNCTION ***************************************************/
+int main()
+{
+	/** VARIABLE DECLARATION ****************************************/
+
+int N, option;
+	/** FUNCTION CALLS***********************************************/
+
+	cout << "Which design would you like? \n1) Right Triangle Point Up \n2)Right Triangle Point Down \n3)Equalateral Triangle \n4) Square With 'X'";
+	cin>> option;
+	cout <<endl;
+
+	getinput(N);
+
+		switch(option)
+		{
+		case 1:
+			 pointup(N);
+			break;
+		case 2:
+			 pointup(N);
+			break;
+		case 3:
+			 equalateral(N);
+			break;
+		case 4 :
+			squareX(N);
+			break;
+
+		}
+
+   return 0;
+}
+
+/** FUNCTIONS *******************************************************/
+void getinput(int &N)
+{
+	cout << "Please enter the desired height of your figure:";
+	cin >> N;
+	cout <<endl;
+}
+void pointup(int &N)
+{
+	int row, col;
+
+	for(row = 0; row < N; row++)
+	  {
+	    for(col = row; col >= 0; col --)
+	     cout << "*";
+	    cout << endl;
+
+	  }
+}
