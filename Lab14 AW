@@ -1,0 +1,55 @@
+/** COMMENTS ********************************************************/
+/*	Your name:ALexandra WOlf
+	Class block: 	H			Date:1/3/14
+	Lab:
+	Title:
+	Objective:
+*/
+
+/** INCLUDE FILES ***************************************************/
+
+#include <iostream>	//	input output commands:	cout & cin
+using namespace std;
+//NEED TO FIND THE DOCUMENT AND THEN THE ipminp THING THAT DOES THE SPACING NEEDED FOR THIS LAB
+
+/** FUNCTION PROTOTYPES**********************************************/
+void getinput(char &name, int &one, int &two, int &three, int &four, int &five, int &six, int &seven, int &eight, int &nine, int &ten, int &eleven, int &twelve, int &thirteen, int &fourteen, int &fifteen, int &sixteen, int &seventeen, int &eightteen);
+void score(char &name, int &one, int &two, int &three, int &four, int &five, int &six, int &seven, int &eight, int &nine, int &ten, int &eleven, int &twelve, int &thirteen, int &fourteen, int &fifteen, int &sixteen, int &seventeen, int &eightteen,int &score, int &holes1);
+void Ouput(char &name, int &one, int &two, int &three, int &four, int &five, int &six, int &seven, int &eight, int &nine, int &ten, int &eleven, int &twelve, int &thirteen, int &fourteen, int &fifteen, int &sixteen, int &seventeen, int &eightteen, int &score, int &holes1);
+
+/** MAIN FUNCTION ***************************************************/
+int main()
+{
+	/** VARIABLE DECLARATION ****************************************/
+char name;
+int  one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eightteen,score, holes1;
+
+/** FUNCTION CALLS***********************************************/
+	getinput(name, one, two, three, four, five, six,  seven, eight,  nine,  ten, eleven, twelve,thirteen, fourteen, fifteen, sixteen, seventeen, eightteen);
+	score(name, one, two,three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eightteen, score, holes1);
+	 Ouput(name, one, two,three,  four,  five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eightteen, score, holes1);
+
+   return 0;
+}
+
+/** FUNCTIONS *******************************************************/
+void getinput(char &name, int &one, int &two, int &three, int &four, int &five, int &six, int &seven, int &eight, int &nine, int &ten, int &eleven, int &twelve, int &thirteen, int &fourteen, int &fifteen, int &sixteen, int &seventeen, int &eightteen)
+{
+	cout <<"Enter name of player: ";
+	cin >>name;
+	cout << endl <<"Enter the number of strokes for each hole. \n  hole[1]: \n  hole[2]: \n  hole[3]: \n  hole[4]: \n  hole[5]: \n  hole[6]: \n  hole[7]: \n  hole[8]: \n  hole[9]: \n  hole[10]: \n  hole[11]: \n  hole[12]: \n  hole[13]: \n  hole[14]: \n  hole[15]: \n  hole[16]: \n  hole[17]: \n  hole[18]: ";
+	cin >> one >>two >>three >> four >>five>> six>>seven>> eight >> nine>>ten>>eleven >>twelve>> thirteen>>fourteen>>fifteen>>sixteen >> seventeen >> eightteen;
+}
+void score(char &name, int &one, int &two, int &three, int &four, int &five, int &six, int &seven, int &eight, int &nine, int &ten, int &eleven, int &twelve, int &thirteen, int &fourteen, int &fifteen, int &sixteen, int &seventeen, int &eightteen, int &score, int &holes1)
+{
+score= one+ two+ three+ four+ five+ six+ seven+ eight+ nine+ ten+ eleven+ twelve+ thirteen+ fourteen+ fifteen+ sixteen+ seventeen+ eightteen;
+
+//deteremine if there are any hole in ones and how many
+}
+void Ouput(char &name, int &one, int &two, int &three, int &four, int &five, int &six, int &seven, int &eight, int &nine, int &ten, int &eleven, int &twelve, int &thirteen, int &fourteen, int &fifteen, int &sixteen, int &seventeen, int &eightteen, int &score, int &holes1)
+{
+	cout << name <<", here is your scorecard:"<<endl;
+	cout <<"------------------------------------------------------------"<<endl;
+	cout <<"Score:  "<< one << "  "<< two <<"  " <<three <<"  "<< four << "  "<< five << "  " <<six << "  " << seven <<"  " << eight << "  " << nine "  "<< ten << "  "<< eleven <<"  " << twelve << "  " << thirteen << "  " << fifteen << "  " << sixteen << "  " seventeen <<"  " << eightteen<< endl;
+
+}
