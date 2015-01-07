@@ -12,7 +12,7 @@
 using namespace std;
 
 /** FUNCTION PROTOTYPES**********************************************/
-void getinput(int &N);
+
 void pointup(int &N);
 void pointdown(int &N);
 void equalateral(int &N);
@@ -23,66 +23,99 @@ int main()
 {
 	/** VARIABLE DECLARATION ****************************************/
 
-int N, option;
+int N;
 	/** FUNCTION CALLS***********************************************/
 
-	cout << "Which design would you like? \n1) Right Triangle Point Up \n2)Right Triangle Point Down \n3)Equalateral Triangle \n4) Square With 'X'";
-	cin>> option;
-	cout <<endl;
 
-	 getinput(N);
+	cout << "Please enter the desired height of your figure: "; //get input
+		cin >> N;
+		cout <<endl;
+// call the functions
+			pointdown(N);
 
-		switch(option)
-		{
-		case 1:
 			 pointup(N);
-			break;
-		case 2:
-			 pointdown(N);
-			break;
-		case 3:
-			 equalateral(N);
-			break;
-		case 4 :
-			 squareX(N);
-			break;
 
-		}
+			 equalateral(N);
+
+			 squareX(N);
+
+
+
 
    return 0;
 }
 
 /** FUNCTIONS *******************************************************/
-void getinput(int &N)
-{
-	cout << "Please enter the desired height of your figure: ";
-	cin >> N;
-	cout <<endl;
-}
+
 void pointup(int &N)
 {
-	int row, col;
+ int col;
+for (int row=0; row <N; row++) // this for loop does the length and width of the overall square
+{
+	for ( col=(N-2)-row; col>=0;col--) // does the part of the square that should be spaces
+		cout <<" ";
 
-	for(row = 0; row < N; row++)
-	  {
-	    for(col = row; col < N; col ++)
-	     cout << "*";
-	    cout << endl;
+	for ( col= row; col>=0; col--) // does the part of the square that should be stars
+		cout << "*";
+	cout << endl;
+}
 
-	  }
 }
 void pointdown(int &N)
 {
 
+
+	int row, col;
+
+		for(row = 0; row < N; row++)
+		  {
+		    for(col = row; col < N; col ++)
+		     cout << "*";
+		    cout << endl;
+
+		  }
 }
+
 void equalateral(int &N)
 {
+int col;
+cout << endl;
+for (int row=0; row<N; row++)
+{
+	for ( col= (N-2)-row; col >=0; col--)
+		cout <<" ";
 
+	for(col=(2*row); col >=0; col--)
+		cout << "*";
+	cout <<endl;
 }
+
+cout << endl;
+}
+
+
+
 void squareX(int &N)
 {
-for (int row= 0; row <N +1; row ++)
-{
-	for (col = 1)
+
+
+//for (int row= 1; row <N +1; row ++)
+
+	for (int row= 1; row<=N; row ++) // maybe row =0 instead of 1
+	{
+		for( int col=1; col <= N; col ++)
+		{
+
+		if (col==1 || col==N ||row == 1 || row == N || col==row || col== (N-row)+1) // if the row is the first or last cout a whole row of stars, or if the col is equal to the first of nth row cout all stars
+			// to make the x pattern if the col is equal to teh row number cout a star will make the half of the x like this "\ " and then do the the legnth of the row (N) - the row adn add one does the half of the x like this "/"
+			cout << "*" ;
+
+		else
+			cout << " ";
+
+		}
+		cout <<endl;
+
 }
 }
+
