@@ -225,7 +225,7 @@ void reduceFraction( int &numanswer, int &denanswer,int &reducednumerator, int &
 {
 
 	int gcf=1;
-	cout <<"in reduce fraction"<< endl;
+
 	for (int N = denanswer; N>0; N--)
 	{
 		if (denanswer==0 && numanswer%N==0)
@@ -234,7 +234,7 @@ void reduceFraction( int &numanswer, int &denanswer,int &reducednumerator, int &
 	}
 
 	gcf=  greatestCommonDivisor( numanswer,  denanswer);
-
+cout << numanswer <<endl;
 	reducednumerator = numanswer/gcf;
 	reduceddenom = denanswer / gcf;
 
