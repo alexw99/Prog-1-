@@ -8,6 +8,8 @@
 
 // teh numanswer adn denanswer r not wokring because each void function is eperate and has a distinct set of variablesthey r isolated per function
 //make sure all parameters match
+
+// call gcf in switchcase for add and subtract ONLY; also include LCM code with GCF function
 /** INCLUDE FILES ***************************************************/
 
 #include <iostream>	//	input output commands:	cout & cin
@@ -53,11 +55,12 @@ int main()
 		switch (option)
 		{
 		case 1:
-
+			 greatestCommonDivisor( denominator1,  denominator2);
 			 add(numerator1, denominator1, numerator2 , denominator2, numanswer, denanswer);
 			 sign = '+';
 			 break;
 		case 2:
+			 greatestCommonDivisor( denominator1,  denominator2);
 			 subtract(numerator1, denominator1, numerator2 , denominator2, numanswer, denanswer);
 			 sign='-';
 			 break;
@@ -162,10 +165,10 @@ return lowestcommonmultiple;
 void add(int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer)
 {
 	cout << "in the add function" << endl;
-	int gcf, lowestcommonmultiple ;
+	//int gcf, lowestcommonmultiple ;
 //	lowestcommonmultiple = LCM(denominator1, denominator2);// somthing is going wrong right here
 	//cout << lowestcommonmultiple << endl;
-	gcf = greatestCommonDivisor(denominator1, denominator2);
+	//gcf = greatestCommonDivisor(denominator1, denominator2);
 	cout << "done with gcf"<<endl;
 	denanswer = LCM(denominator1, denominator2); //calculate LCM for fractions and convert fractions into fractions with common denominators
 cout << "done with LCM"<< endl;
@@ -181,8 +184,8 @@ cout << "done with LCM"<< endl;
 
 void subtract(int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer)
 {
-	int gcf, lowestcommonmultiple;
-	gcf = greatestCommonDivisor(denominator1,  denominator2);
+	int  lowestcommonmultiple = 1;
+	//gcf = greatestCommonDivisor(denominator1,  denominator2);
 	denanswer = LCM(denominator1, denominator2); //calculate LCM for fractions and convert fractions into fractions with common denominators
 	numanswer= ((lowestcommonmultiple /denominator1)*numerator1)- ((lowestcommonmultiple/ denominator2)*numerator2);
 	   //divide LCM by original denominators and multiply by original numerators
