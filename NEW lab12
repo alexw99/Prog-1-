@@ -8,8 +8,6 @@
 
 // teh numanswer adn denanswer r not wokring because each void function is eperate and has a distinct set of variablesthey r isolated per function
 //make sure all parameters match
-
-// call gcf in switchcase for add and subtract ONLY; also include LCM code with GCF function
 /** INCLUDE FILES ***************************************************/
 
 #include <iostream>	//	input output commands:	cout & cin
@@ -19,17 +17,17 @@ using namespace std;
 void getinput (int &numerator1, int &denominator1, int &numerator2 , int &denominator2);
 int greatestCommonDivisor(int denominator1, int denominator2);
 int LCM( int denominator1, int denominator2);
-void add(int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer);
-void subtract(int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer);
-void multiply (int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer);
-void divide (int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer);
+void add(int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer);
+void subtract(int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer);
+void multiply (int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer);
+void divide (int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer);
 void reduceFraction( int &numanswer, int &denanswer,int &reducednumerator, int &reduceddenom );
 void output(int numerator1, int denominator1, int numerator2, int denominator2, int &numanswer, int &denanswer,int &reducednumerator, int &reduceddenom, char &sign);
 
 /** MAIN FUNCTION ***************************************************/
 int main()
 {
-	cout << "in main" << endl;
+
 	/** VARIABLE DECLARATION ****************************************/
 
 	int option, numerator1, denominator1, numerator2 , denominator2,  numanswer, denanswer , reducednumerator, reduceddenom;
@@ -40,27 +38,36 @@ int main()
 	do
 	{
 
-		cout << "in do-while" << endl;
+
+	do
+	{
+
+
 
 		 getinput (numerator1, denominator1, numerator2 , denominator2);
 
- cout << "Done with getinput" << endl;
+
 
 			cout <<"Menu of Operations \nAdd...................1 \nSubtract..............2 \nMultiply..............3 \nDivide................4\n";
 			cout <<"Which operation? ";
 			cin >> option;
 			cout <<endl;
 
+			if (numerator2 == 0 && option ==4 )
+				{
+			cout << "You cannot have a zero in the numerator because when you flip the second fraction you will get a numerator in the denominator!"<<endl<<endl;
+				}
+
+	} while( numerator2 == 0 && option ==4 );
 
 		switch (option)
 		{
 		case 1:
-			 greatestCommonDivisor( denominator1,  denominator2);
+
 			 add(numerator1, denominator1, numerator2 , denominator2, numanswer, denanswer);
 			 sign = '+';
 			 break;
 		case 2:
-			 greatestCommonDivisor( denominator1,  denominator2);
 			 subtract(numerator1, denominator1, numerator2 , denominator2, numanswer, denanswer);
 			 sign='-';
 			 break;
@@ -75,16 +82,19 @@ int main()
 			 sign= '/';
 			 break;
 		}
-cout <<"exited switch-case"<< endl;
 
+if (numanswer != 0 && denanswer !=0 )
+{
  reduceFraction(numanswer, denanswer,reducednumerator, reduceddenom );//reduce fraction function
-		 cout << "done with reduce fraction" << endl;
+}
 		  output( numerator1,  denominator1,  numerator2,  denominator2, numanswer, denanswer, reducednumerator, reduceddenom, sign);//call output function
 
-			cout << "Another problem (y for yes, n for no)? ";
+			cout <<endl <<endl<< "Another problem (y for yes, n for no)? ";
 			cin >> anotherproblem;
-
+cout << endl;
 	} while (anotherproblem == 'y');
+
+
 
 	return 0;
 	}
@@ -112,7 +122,7 @@ void getinput (int &numerator1, int &denominator1, int &numerator2 , int &denomi
 }
 int greatestCommonDivisor(int denominator1, int denominator2) // we need this function to reduce fractions to simplest form
 	{
-	cout << "in gcf func" << endl;
+
 	int remainder=0, small=0, big=0, gcf;
 
 		if(denominator1 > denominator2) //if first number is the larger number do this code
@@ -137,18 +147,18 @@ int greatestCommonDivisor(int denominator1, int denominator2) // we need this fu
 			big=denominator2;
 		}
 
-		cout << small << endl << big << endl;
+
 
 		do
 		{
 				remainder = big % small;
 				big=small;
 				small = remainder;
-				cout << "loop" << endl;
+
 		}while (remainder != 0); //do while or while loop to go while the remainder is not equal to zero
 
 		gcf=big;
-		cout << gcf<< " here is the gcf" << endl;
+
 		return gcf;
 	}
 int LCM( int denominator1, int denominator2)
@@ -156,71 +166,73 @@ int LCM( int denominator1, int denominator2)
 	int gcf=0, lowestcommonmultiple;
 	gcf = greatestCommonDivisor(denominator1,  denominator2);
 	lowestcommonmultiple= (denominator1 *denominator2)/ gcf;
-	cout << lowestcommonmultiple << endl;
+
 
 return lowestcommonmultiple;
 
 }
 
-void add(int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer)
+void add(int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer)
 {
-	cout << "in the add function" << endl;
-	//int gcf, lowestcommonmultiple ;
-//	lowestcommonmultiple = LCM(denominator1, denominator2);// somthing is going wrong right here
-	//cout << lowestcommonmultiple << endl;
-	//gcf = greatestCommonDivisor(denominator1, denominator2);
-	cout << "done with gcf"<<endl;
+
+	int gcf;
+
+	gcf = greatestCommonDivisor(denominator1, denominator2);
+
 	denanswer = LCM(denominator1, denominator2); //calculate LCM for fractions and convert fractions into fractions with common denominators
-cout << "done with LCM"<< endl;
 
 
-	numanswer= ((LCM(denominator1, denominator2) /denominator1)*numerator1)+ ((LCM(denominator1, denominator2)/ denominator2)*numerator2);
-	   //divide LCM by original denominators and multiply by original numerators
-	cout << numanswer << endl << denanswer << endl;
 
-//call reduce fraction
-//maybe call reduce fraction function and output function in the main function
-}
-
-void subtract(int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer)
-{
-	int  lowestcommonmultiple = 1;
-	//gcf = greatestCommonDivisor(denominator1,  denominator2);
-	denanswer = LCM(denominator1, denominator2); //calculate LCM for fractions and convert fractions into fractions with common denominators
-	numanswer= ((lowestcommonmultiple /denominator1)*numerator1)- ((lowestcommonmultiple/ denominator2)*numerator2);
+	numanswer= ((denanswer /denominator1)*numerator1)+ ((denanswer/ denominator2)*numerator2);
 	   //divide LCM by original denominators and multiply by original numerators
 
-//call reduce fraction
-//maybe call reduce fraction function and output function in the main function
+
 }
 
-void multiply (int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer)
+void subtract(int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer)
+{
+	int gcf;
+
+		gcf = greatestCommonDivisor(denominator1, denominator2);
+
+		denanswer = LCM(denominator1, denominator2); //calculate LCM for fractions and convert fractions into fractions with common denominators
+
+
+
+		numanswer= ((denanswer /denominator1)*numerator1)- ((denanswer/ denominator2)*numerator2);
+		   //divide LCM by original denominators and multiply by original numerators
+
+
+}
+
+void multiply (int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer)
 {
 	numanswer= numerator1*numerator2;
-	denanswer= denominator1*2;
+	denanswer= denominator1*denominator2;
 
 }
 
-void divide (int numerator1, int denominator1, int numerator2 , int denominator2,  int numanswer, int denanswer)
+void divide (int numerator1, int denominator1, int numerator2 , int denominator2,  int &numanswer, int &denanswer)
 {
 	//cross multiplying is the same as fliping the second fraction and then multiplying
-	numanswer= numerator1*denominator1; //I use denominator1 twice because in thes LCM function I have made denominator1 =to the LCM and so both denominator1 and denominator2 are equal to the LCM
+	numanswer= numerator1*denominator2;
 	denanswer= denominator1*numerator2;
-
-
-if (numerator2==0)
-	{
-		cout<< "You cannot have a zero in the numerator because when you flip the second fraction you will get a numerator in the denominator!"<<endl <<endl;
-		return; // returning to main function to get valid input by running input and menu again
-	}
 
 
 }
 //reduce fraction function
 void reduceFraction( int &numanswer, int &denanswer,int &reducednumerator, int &reduceddenom )
 {
-	int gcf;
-	cout << numanswer << endl << denanswer << endl;
+
+	int gcf=1;
+	cout <<"in reduce fraction"<< endl;
+	for (int N = denanswer; N>0; N--)
+	{
+		if (denanswer==0 && numanswer%N==0)
+			gcf=N;
+		break; // this allows us to find the smallest gcf instead of just any number that goes into both of teh numbers
+	}
+
 	gcf=  greatestCommonDivisor( numanswer,  denanswer);
 
 	reducednumerator = numanswer/gcf;
@@ -231,8 +243,56 @@ void reduceFraction( int &numanswer, int &denanswer,int &reducednumerator, int &
 //output function
 void output(int numerator1, int denominator1, int numerator2, int denominator2, int &numanswer, int &denanswer,int &reducednumerator, int &reduceddenom, char &sign)
 {
-cout << numerator1 <<" "<< numerator2<<"" << numanswer << " " << reducednumerator<< endl;
-cout << "--- "<< sign << " --- = --- = ---"<<endl;
-cout << denominator1 << " " << denominator2 << " " << denanswer << " "<< reduceddenom << endl;
+	//first line of output
+
+cout << " " << numerator1 <<"     "<< numerator2<<"     " << numanswer << " ";
+if (reducednumerator != numanswer )
+ {
+cout <<"     " << reducednumerator;
+ }
+
+cout << endl;
+
+
+
+
+//second line of output
+cout << "--- "<< sign << " --- ";
+
+if (denanswer!= 1 && reduceddenom !=1)
+{
+cout << "= --- ";
+}
+ if (reducednumerator != numanswer )
+ {
+cout << "= ---";
+ }
+ if (reducednumerator != numanswer && (denanswer==1 || reduceddenom ==1))
+  {
+	 cout << " =  "<< reducednumerator; // only include the reduced fraction if there is one
+  }
+cout << endl;
+
+
+//last line of code
+cout << " " <<denominator1 << "     " << denominator2 << "     " << denanswer << " " ;
+
+if (denanswer!= 1 && reduceddenom !=1)
+{
+cout << " ";//removed the endl
+
+
+if (reduceddenom!= denanswer && denanswer==0)
+{
+	cout << "     "<< reduceddenom;
 }
 
+
+if (reducednumerator != numanswer )
+ {
+cout <<"   " << reduceddenom;
+ }
+cout << endl;
+}
+
+}
