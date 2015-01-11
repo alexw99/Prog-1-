@@ -5,15 +5,19 @@
 	Title:
 	Objective:
 */
+//figure out how to get the inouts that the users enters for each hole to line up in console
 
 /** INCLUDE FILES ***************************************************/
 
 #include <iostream>	//	input output commands:	cout & cin
+#include <iomanip>      // setw
 using namespace std;
+
 //NEED TO FIND THE DOCUMENT AND THEN THE ipminp THING THAT DOES THE SPACING NEEDED FOR THIS LAB
 // Need to figure out how to make is possible for the user to enter data right after the hole[] thing
 
 /** FUNCTION PROTOTYPES**********************************************/
+void getinput(string &name, int holes[18]);
 void calculate(string &name, int holes[18],int &score, int &holes1);
 void Ouput(string &name, int holes[18],int &score, int &holes1);
 
@@ -25,12 +29,7 @@ string name;
 int holes[18] ,score, holes1;
 
 /** FUNCTION CALLS***********************************************/
-cout <<"Enter name of player: ";
-	cin >>name;
-	cout << endl <<"Enter the number of strokes for each hole. \n  hole[1]: \n  hole[2]: \n  hole[3]: \n  hole[4]: \n  hole[5]: \n  hole[6]: \n  hole[7]: \n  hole[8]: \n  hole[9]: \n  hole[10]: \n  hole[11]: \n  hole[12]: \n  hole[13]: \n  hole[14]: \n  hole[15]: \n  hole[16]: \n  hole[17]: \n  hole[18]: ";
-	for (int i=0; i<18; i++)
-	cin >> holes[i]; // we need a 18 element array to hole the scores for the 18 holes
-
+	getinput(name, holes);
 	 calculate(name,  holes,score, holes1);
 	 Ouput(name,  holes, score, holes1);
 
@@ -38,16 +37,31 @@ cout <<"Enter name of player: ";
 }
 
 /** FUNCTIONS *******************************************************/
+void getinput(string &name, int holes[18])
+{
+	cout <<"Enter name of player: ";
+			cin >>name;
+			cout <<"Enter the number of strokes for each hole. "<<endl;
+			for (int i=0; i<18; i++)
+			{
+				cout << "  hole["<< i+1 <<"]: ";
+
+
+
+			cin >> holes[i]; // we need a 18 element array to hole the scores for the 18 holes
+			}
+}
 
 void calculate(string &name, int holes[18],int &score, int &holes1)
 {
-	for (int i=0; i<=18; i++)
-score= score + holes[i]; // how can i make this add each element of the
+	score=0;
+	for (int i=0; i<18; i++)
+		score+=holes[i]; // the format for adding the elements in the array
 
 //deteremine if there are any hole in ones and how many
 	for (int i=0; i<=18; i++)
 	{
-		if (holes[i]== 1)
+		if (holes[i]== 1) // if the person got the ball in the hole in one stroke they score and  hole in one so add 1 to their hole in one tally
 			holes1=holes1+1;
 	}
 
@@ -56,12 +70,22 @@ score= score + holes[i]; // how can i make this add each element of the
 
 void Ouput(string &name, int holes[18],int &score, int &holes1)
 {
-	cout << name <<", here is your scorecard:"<<endl;
-	cout <<"------------------------------------------------------------"<<endl;
-	cout <<"Score:  ";
-	for (int i=0; i<18; i++)
-		cout << holes[i]<< "   "; // Need to figure out spaces inbetween the added " "
+	cout << endl << name <<", here is your scorecard:"<<endl<< endl;
+	cout << "Hole :";
 
-	cout <<endl<<"Your total is "<< score<< "."<< endl;
+	for(int i=1; i<19; i++)
+	{
+	std::cout << std::setw(3) << i ;
+	}
+
+	cout << endl<<"------------------------------------------------------------"<<endl;
+	cout <<"Score:";
+	for (int i=0; i<18; i++)
+	{
+		std::cout << std::setw(3) << holes[i];
+	}
+
+
+	cout <<endl<<endl<<"Your total is "<< score<< "."<< endl;
 cout <<"You scored "<< holes1 << " holes-in-one.";
 }
