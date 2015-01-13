@@ -1,0 +1,136 @@
+/** COMMENTS ********************************************************/
+/*	Your name: Alexandra Wolf
+	Class block: H				Date:
+	Lab:
+	Title:Lab 15
+	Objective:
+*/
+// CHANGE THE GUESS ARRAY TO A VECTOR
+// figure out how to make a random number generator go from 1-6 see srand below if corect
+//I MAY ALSO NEED A NUMBER CORRECT VARIABLE ADN A LOCATION CORRECT VARIABLE?
+// maybe instead create two functions one check and one outpout
+/** INCLUDE FILES ***************************************************/
+#include <vector>
+#include <iostream>	//	input output commands:	cout & cin
+using namespace std;
+
+/** FUNCTION PROTOTYPES**********************************************/
+int location(vector<int> &guess, const vector<int> &numbers); // what to do and to check if location is correct
+int numbermathces(vector<int> &guess, vector<int> &numbers); // what do do and check if number is correct
+void randomnumber(vector<int> &numbers);
+void output(int &numcorrect,int &locationccorrect);
+
+/** MAIN FUNCTION ***************************************************/
+int main()
+{
+	/** VARIABLE DECLARATION ****************************************/
+	int locationccorrect, numcorrect;
+	vector<int> numbers(4); // have a vector to hold random numbers generated/ the answer
+	vector<int> guess(4);
+
+
+
+
+
+
+/** FUNCTION CALLS***********************************************/
+	cout <<"Welcome to Mastermind"<< endl;
+	randomnumber( numbers);
+
+do
+{
+	cout <<" \nPlease enter your four numerical guesses (space separated): ";
+		for (int i=0; i<4; i++)
+			cin >> guess[i]; // we need a 4 element array to hole the scores for the 18 holes
+
+
+		locationccorrect = location(guess, numbers); // we need variables to = the functions call because they are int functions
+
+		 numcorrect= numbermathces(guess, numbers);
+		  output(numcorrect,locationccorrect);
+
+}while (locationccorrect!= 4);
+
+   return 0;
+}
+
+/** FUNCTIONS *******************************************************/
+
+void randomnumber(vector<int> &numbers)
+{
+//rand () % 6+1;//the rand ()%6 calculates a random number from 0-5 then the add one adds one to whatever number selected and so it goes from 1-6
+srand(time(0));
+
+for (int i=0; i<4; i++)
+{
+numbers[i]=1 + rand () % 6;// this will give it random number for spots 0 through 3
+
+}
+//cout << numbers[0] << numbers[1]<< numbers[2]<< numbers[3]<< endl;
+}
+
+int location(vector<int> &guess, const vector<int> &numbers)
+{
+	int locationccorrect = 0;
+	for (int i=0; i<4; i++)
+	{
+
+		if (guess[i] == numbers[i]) // stops double counting in future functions
+		{
+			locationccorrect=locationccorrect+1;
+			guess[i]=-1;
+		}
+	}
+	return locationccorrect;
+}
+
+
+int numbermathces(vector<int> &guess, vector<int> &numbers)
+{
+	int numcorrect = 0;
+
+	vector<int> holding(4);//create another vector so that if the user enters two 3s and there is only one 3 in the answer they don't get counted twice
+
+	for (int a=0; a<4; a++)// transfer numbers from the answer to the holding vector
+{
+	holding[a]=numbers[a];
+}
+
+	for (int i=0; i <4; i++) //for the numbers vector
+	{
+		for (int n=0; n<4; n++) //for the guess vector
+		{
+			if (guess[n]==numbers[i] && guess[n]!=-1)// check for guess slot 0 for all numbers in
+			{
+				numcorrect=numcorrect+1;
+				guess[n]=0;
+				numbers[i]=-2; //to prevent double counting in two of the same numbers are entered
+
+			}
+		}
+	}
+	for(int y=0; y<4; y++) // put holding values back into numbers vector (the answer one)
+	{
+numbers[y]= holding[y];
+	}
+
+return numcorrect;
+}
+
+void output(int &numcorrect,int &locationccorrect)
+{
+	if (locationccorrect== 4)
+	{
+		cout <<endl << "Correct! \n\nYou are a MasterMind!";
+	}
+	else
+	{
+		cout <<endl << endl << "You have " << numcorrect<< " correct number and "<< locationccorrect<<" correct location."<< endl << endl;
+		numcorrect=0;
+		locationccorrect=0;//have to initalize again so that a running total doesn't occur
+	}
+
+}
+
+
+
