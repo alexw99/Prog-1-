@@ -1,0 +1,72 @@
+/** COMMENTS ********************************************************/
+/*	Your name: ALexandra WOlf
+	Class block: 				Date: 1/15/15
+	Lab: 16
+	Title:
+	Objective:
+*/
+//look at instructions
+//for loop needed in int main for it to run four times
+/** INCLUDE FILES ***************************************************/
+
+#include <iostream>	//	input output commands:	cout & cin
+#include <vector>
+using namespace std;
+
+
+/** FUNCTION PROTOTYPES**********************************************/
+void getinput (vector<int> &inputtednums);
+void add(vector<int> &inputtednums);
+void Ouput(vector<int> &inputtednums);
+
+/** MAIN FUNCTION ***************************************************/
+int main()
+{
+	/** VARIABLE DECLARATION ****************************************/
+int sum;
+	vector<int> inputtednums(12,0);     // initialize to zero
+
+
+
+	/** FUNCTION CALLS***********************************************/
+
+	cout << "Input:                                           	Output:"<<endl<< endl;
+	for (int i=1; i<4; i++)
+{
+	getinput (inputtednums);
+	add(inputtednums);
+	Ouput(inputtednums);
+
+}
+
+
+   return 0;
+}
+
+/** FUNCTIONS *******************************************************/
+void getinput (vector<int> &inputtednums)
+{
+
+for (int i=0; i<2; i++)
+	cin >> inputtednums[i];
+
+}
+
+void add(vector<int> &inputtednums)
+{
+	inputtednums[2]= inputtednums[0]+ inputtednums[1];
+
+}
+
+
+void Ouput(vector<int> &inputtednums)
+{
+
+//need to cout the values that I was given and
+	for (int i=2; i<13; i +3)
+	{
+	cout "The sum is: " << inputtednums[i]s;
+
+
+	}
+}
