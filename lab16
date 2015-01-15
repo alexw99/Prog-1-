@@ -7,6 +7,7 @@
 */
 //look at instructions
 //for loop needed in int main for it to run four times
+// string string char
 /** INCLUDE FILES ***************************************************/
 
 #include <iostream>	//	input output commands:	cout & cin
@@ -15,25 +16,27 @@ using namespace std;
 
 
 /** FUNCTION PROTOTYPES**********************************************/
-void getinput (vector<int> &inputtednums);
-void add(vector<int> &inputtednums);
-void Ouput(vector<int> &inputtednums);
-
+void getinput (string &value1, string &value2);
+void add(vector<int> largeInt1 ,vector<int> largeInt2,vector<int> finalInt, string &value1, string &value2);
+void Ouput(vector<int> largeInt1 , string &value1, string &value2);
+int asciiToInt (char ch);
 /** MAIN FUNCTION ***************************************************/
 int main()
 {
 	/** VARIABLE DECLARATION ****************************************/
-int sum;
-	vector<int> inputtednums(12,0);     // initialize to zero
+// the second zero initilizes all values in the vector to zero
+	vector<int> largeInt1 (12,0);     // for int the ints that have been converted from teh chars for the first value
+	vector<int> largeInt2 (12,0);   // thesee r for the second value
+	vector<int> finalInt (13,0);
+	vector <int> sum; // to remove any zeros at the beginning of numbersss
 
 
 
 	/** FUNCTION CALLS***********************************************/
 
-	cout << "Input:                                           	Output:"<<endl<< endl;
-	for (int i=1; i<4; i++)
+	for (int i=1; i<5; i++)
 {
-	getinput (inputtednums);
+	getinput (value1, value2);
 	add(inputtednums);
 	Ouput(inputtednums);
 
@@ -44,29 +47,67 @@ int sum;
 }
 
 /** FUNCTIONS *******************************************************/
-void getinput (vector<int> &inputtednums)
+void getinput (vector<string> &inputtednums, string &value1, string &value2)
 {
+
+
 
 for (int i=0; i<2; i++)
-	cin >> inputtednums[i];
-
-}
-
-void add(vector<int> &inputtednums)
 {
-	inputtednums[2]= inputtednums[0]+ inputtednums[1];
+
+	cout << "Enter two numbers you would like to sum: "<< endl << endl;
+	cin >> value1 >> value2;//inputtednums[i];
+}
+}
+
+void add(vector<int> largeInt1 ,vector<int> largeInt2,vector<int> finalInt, string &value1, string &value2)
+{
+	char ch;
+	int length, length2;
+	string reverse1, reverse2;
+
+
+	 length= value1.size(); // find length of strings/ how many chars in the  string
+	 length2 = value2.size();
+
+	 for (int i; i<length; i++ )//reverse strings
+	 {
+	 value1[i]= reverse1[i];
+	 }
+
+	for (int i; i< length2; i ++)
+	{
+		value2[i]= reverse2[i];
+	}
+
+
+//create a vector that will have the chars ?
+
+	 // create a for loop to call the wied function and take those and put them into a vector
+	 for (int i; i <length; i++)
+	 {
+		 length[i]= asciiToInt ( ch ); // convert chars to  ints
+	 }
+
+	// string -> series of charrrs-> ints- > ints get out into a vector
+
+	//inputtednums[2]= inputtednums[0]+ inputtednums[1];
 
 }
 
 
-void Ouput(vector<int> &inputtednums)
+void Ouput(vector<string> &inputtednums, string &value1, string &value2)
 {
 
 //need to cout the values that I was given and
 	for (int i=2; i<13; i +3)
 	{
-	cout "The sum is: " << inputtednums[i]s;
-
+	cout <<"The sum is: " << inputtednums[i]<<   endl << endl;
+break;
 
 	}
+}
+int asciiToInt (char ch ) // this function turns  the chaars into their int valluess
+{
+	return (ch - '0');
 }
