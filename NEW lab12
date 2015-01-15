@@ -234,7 +234,7 @@ void reduceFraction( int &numanswer, int &denanswer,int &reducednumerator, int &
 	}
 
 	gcf=  greatestCommonDivisor( numanswer,  denanswer);
-cout << numanswer <<endl;
+//cout << numanswer <<endl;
 	reducednumerator = numanswer/gcf;
 	reduceddenom = denanswer / gcf;
 
