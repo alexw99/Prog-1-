@@ -18,7 +18,7 @@ using namespace std;
 /** FUNCTION PROTOTYPES**********************************************/
 void getinput (string &value1, string &value2);
 void add(vector<int> largeInt1 ,vector<int> largeInt2,vector<int> finalInt, string &value1, string &value2);
-void Ouput(vector<int> largeInt1 , string &value1, string &value2);
+void Ouput(vector<int> largeInt1 , string &value1, string &value2,vector<int> finalInt );
 int asciiToInt (char ch);
 /** MAIN FUNCTION ***************************************************/
 int main()
@@ -37,8 +37,16 @@ int main()
 	for (int i=1; i<5; i++)
 {
 	getinput (value1, value2);
-	add(inputtednums);
-	Ouput(inputtednums);
+
+	for (int i=0; i < value1.size; i++ ) // for the length of each large int
+	{
+		largeInt1[i]= asciiToInt (value1[i]) ;
+		largeInt2[i]=asciiToInt (value2[i]);
+	}
+
+	// do
+	add(largeInt1 ,largeInt2, finalInt, value1, value2);
+	Ouput(finalInt);
 
 }
 
@@ -50,15 +58,16 @@ int main()
 void getinput (vector<string> &inputtednums, string &value1, string &value2)
 {
 
-
-
 for (int i=0; i<2; i++)
 {
 
 	cout << "Enter two numbers you would like to sum: "<< endl << endl;
-	cin >> value1 >> value2;//inputtednums[i];
+	cin >> value1 >> value2; // get the two strings that we will eventually turn to ints
 }
 }
+
+
+
 
 void add(vector<int> largeInt1 ,vector<int> largeInt2,vector<int> finalInt, string &value1, string &value2)
 {
